@@ -5,4 +5,4 @@ class AccountController {
     }
 }
 
-export default AccountController;
+export default new AccountController;

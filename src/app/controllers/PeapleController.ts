@@ -4,4 +4,4 @@ class PeopleController {
     }
 }
 
-export default PeopleController;
+export default new PeopleController;

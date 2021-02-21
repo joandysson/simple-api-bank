@@ -1,9 +1,9 @@
 import { Router } from "express";
-import transactionController from "@controllers/TransactionController";
+import TransactionController from "@controllers/TransactionController";
 
 
 const peopleRouters = Router();
 
-peopleRouters.post('/create', transactionController.index);
+peopleRouters.post('/create', TransactionController.index);
 
 export default peopleRouters;

@@ -4,4 +4,4 @@ class TransactionController {
     }
 }
 
-export default TransactionController;
+export default new TransactionController;

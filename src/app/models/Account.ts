@@ -20,23 +20,23 @@ export default class Account extends BaseEntity {
     @PrimaryGeneratedColumn()
     public id: number;
 
-    @Column({type: 'number', name: 'id_people'})
+    @Column({type: 'numeric', name: 'id_people'})
     public idPeople: number;
 
     @Column({type: 'double'})
     public balance: Double;
 
-    @Column({type: 'number', name: 'daily_summary_limit'})
+    @Column({type: 'numeric', name: 'daily_summary_limit'})
     public dailySummaryLimit: number;
 
-    @Column({type: 'boolean'})
-    public active_flag: boolean;
+    @Column({type: 'boolean', name: 'active_flag'})
+    public activeFlag: boolean;
 
-    @Column({type: 'varchar'})
-    public type_account: string;
+    @Column({type: 'varchar', name: 'type_account'})
+    public typeAccount: string;
 
-    @Column({type: 'date'})
-    public date_birthday: Date;
+    @Column({type: 'date', name:'date_birthday'})
+    public dateBirthday: Date;
 
     @CreateDateColumn({name: 'created_at'})
     public createdAt: Date;

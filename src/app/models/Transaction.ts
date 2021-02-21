@@ -16,10 +16,10 @@ import Account from "./Account";
 export default class Transaction extends BaseEntity {
 
     @PrimaryGeneratedColumn()
-    public id: string;
+    public id: number;
 
-    @Column({type: 'number', name: 'id_acconut'})
-    public idAcconut: string;
+    @Column({type: 'numeric', name: 'id_acconut'})
+    public idAcconut: number;
 
     @Column({type: 'double'})
     public valor: Double;

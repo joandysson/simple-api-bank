@@ -14,7 +14,7 @@ import Account from "./Account";
 export default class People extends BaseEntity {
 
     @PrimaryGeneratedColumn()
-    public id: string;
+    public id: number;
 
     @Column({type: 'varchar'})
     public name: string;
