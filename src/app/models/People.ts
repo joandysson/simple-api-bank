@@ -8,10 +8,10 @@ import {
     DeleteDateColumn
 } from "typeorm";
 
-@Entity('users')
+@Entity('people')
 export default class People extends BaseEntity {
 
-    @PrimaryGeneratedColumn('uuid')
+    @PrimaryGeneratedColumn()
     public id: string;
 
     @Column({type: 'varchar'})
@@ -20,7 +20,7 @@ export default class People extends BaseEntity {
     @Column({type: 'varchar'})
     public cpf: string;
 
-    @Column({type: 'varchar'})
+    @Column({type: 'date'})
     public date_birthday: Date;
 
     @CreateDateColumn({name: 'created_at'})

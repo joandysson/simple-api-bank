@@ -5,7 +5,7 @@ export function renderCreatePeople(people: People) {
         name: people.name,
     }
 }
-export function renderRefreshUser(people: People| undefined) {
+export function renderRefreshPeople(people: People| undefined) {
     if(!people) return {};
     return {
         name: people.name,
