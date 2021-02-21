@@ -6,24 +6,23 @@ import {
     PrimaryGeneratedColumn,
     UpdateDateColumn,
     DeleteDateColumn,
-    OneToOne,
+    Double,
+    JoinColumn,
+    OneToMany
 } from "typeorm";
 import Account from "./Account";
 
-@Entity('people')
-export default class People extends BaseEntity {
+@Entity('transactions')
+export default class Transaction extends BaseEntity {
 
     @PrimaryGeneratedColumn()
     public id: string;
 
-    @Column({type: 'varchar'})
-    public name: string;
+    @Column({type: 'number', name: 'id_acconut'})
+    public idAcconut: string;
 
-    @Column({type: 'varchar'})
-    public cpf: string;
-
-    @Column({type: 'date'})
-    public date_birthday: Date;
+    @Column({type: 'double'})
+    public valor: Double;
 
     @CreateDateColumn({name: 'created_at'})
     public createdAt: Date;
@@ -34,6 +33,8 @@ export default class People extends BaseEntity {
     @DeleteDateColumn({name: 'deleted_at'})
     public deletedAt: Date;
 
-    @OneToOne(() => Account, account => account.people)
+
+    @OneToMany(type => Account, account => account.transaction)
+    @JoinColumn({name: 'id', referencedColumnName: 'id_acconut'})
     account: Account
 }

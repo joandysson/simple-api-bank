@@ -1,12 +1,7 @@
-import { Request, Response } from 'express';
-import People from '@models/People';
-import { renderCreatePeople } from '@views/People';
-import { validStore } from '@validators/people';
-
 class TransactionController {
     async index() {
 
     }
 }
 
-export default new TransactionController;
+export default TransactionController;
