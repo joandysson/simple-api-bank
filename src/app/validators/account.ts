@@ -44,3 +44,17 @@ export async function validBalance(resquest: Request, response: Response, next: 
 
     next();
 }
+
+export const validHistoryTransactions = validBalance;
+
+export async function validBlock(resquest: Request, response: Response, next: NextFunction) {
+    const schema = Yup.object().shape({
+        accountId: Yup.number().required('ID da conta é obrigatório.'),
+    });
+
+    await schema.validate(resquest.body, {
+        abortEarly: false,
+    });
+
+    next();
+}

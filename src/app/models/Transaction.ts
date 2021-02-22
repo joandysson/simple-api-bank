@@ -6,7 +6,6 @@ import {
     PrimaryGeneratedColumn,
     UpdateDateColumn,
     DeleteDateColumn,
-    Double,
     JoinColumn,
     OneToMany
 } from "typeorm";
@@ -18,11 +17,11 @@ export default class Transaction extends BaseEntity {
     @PrimaryGeneratedColumn()
     public id: number;
 
-    @Column({type: 'numeric', name: 'acconut_id'})
-    public acconutId: number;
+    @Column({type: 'numeric', name: 'account_id'})
+    public accountId: number;
 
     @Column({type: 'double'})
-    public valor: Double;
+    public value: number;
 
     @CreateDateColumn({name: 'created_at'})
     public createdAt: Date;

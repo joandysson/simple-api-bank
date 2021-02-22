@@ -4,14 +4,18 @@ import {
     validDeposit,
     validStore,
     validWithdraw,
-    validBalance
+    validBalance,
+    validBlock,
+    validHistoryTransactions
 } from "@validators/account";
 
 const accountRouters = Router();
 
 accountRouters.post('/create', validStore, AccountController.store);
-accountRouters.post('/deposit', validDeposit, AccountController.deposit);
-accountRouters.post('/withdraw', validWithdraw, AccountController.withdraw);
-accountRouters.get('/balence/:accountId', validBalance, AccountController.balance);
+accountRouters.put('/deposit', validDeposit, AccountController.deposit);
+accountRouters.put('/withdraw', validWithdraw, AccountController.withdraw);
+accountRouters.put('/block', validBlock, AccountController.block);
+accountRouters.get('/balance/:accountId', validBalance, AccountController.balance);
+accountRouters.get('/historytransactions/:accountId', validHistoryTransactions, AccountController.historyTransactions);
 
 export default accountRouters;
