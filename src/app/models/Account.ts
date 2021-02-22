@@ -23,13 +23,13 @@ export enum TypeAccountRole {
 export default class Account extends BaseEntity {
 
     @PrimaryGeneratedColumn('increment')
-    public id?: number;
+    public id: number;
 
     @Column({type: 'numeric', name: 'people_id'})
     public peopleId: number;
 
     @Column({type: 'double'})
-    public balance: Double;
+    public balance: number;
 
     @Column({type: 'numeric', name: 'daily_summary_limit'})
     public dailySummaryLimit: number;

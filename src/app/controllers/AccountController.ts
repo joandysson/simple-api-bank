@@ -36,10 +36,19 @@ class AccountController {
         }
     }
     async deposit(request: Request, response: Response) {
-        const accountExists = await Account.find(request.body.accountId)
-        console.log(accountExists);
+        const accountExists = await Account.findOne(request.body.accountId)
 
-        response.sendStatus(200)
+        if (!accountExists) return response.json('Conta não encontrada').sendStatus(200)
+
+        try {
+            await Account.update(accountExists.id, {
+                balance: accountExists.balance + parseFloat(request.body.value)
+            })
+
+            response.sendStatus(200)
+        } catch (error) {
+            response.json(error.message).sendStatus(500)
+        }
     }
 
 }

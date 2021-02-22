@@ -16,7 +16,7 @@ import Account from "./Account";
 export default class Transaction extends BaseEntity {
 
     @PrimaryGeneratedColumn()
-    public id?: number;
+    public id: number;
 
     @Column({type: 'numeric', name: 'acconut_id'})
     public acconutId: number;
