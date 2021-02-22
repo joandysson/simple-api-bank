@@ -16,10 +16,10 @@ import Account from "./Account";
 export default class Transaction extends BaseEntity {
 
     @PrimaryGeneratedColumn()
-    public id: number;
+    public id?: number;
 
-    @Column({type: 'numeric', name: 'id_acconut'})
-    public idAcconut: number;
+    @Column({type: 'numeric', name: 'acconut_id'})
+    public acconutId: number;
 
     @Column({type: 'double'})
     public valor: Double;
@@ -36,5 +36,5 @@ export default class Transaction extends BaseEntity {
 
     @OneToMany(type => Account, account => account.transaction)
     @JoinColumn({name: 'id', referencedColumnName: 'id_acconut'})
-    account: Account
+    public account: Account
 }

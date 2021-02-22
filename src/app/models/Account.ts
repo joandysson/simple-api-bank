@@ -14,14 +14,19 @@ import {
 import People from "./People";
 import Transaction from "./Transaction";
 
+export enum TypeAccountRole {
+    C = "C",
+    P = "P",
+}
+
 @Entity('accounts')
 export default class Account extends BaseEntity {
 
-    @PrimaryGeneratedColumn()
-    public id: number;
+    @PrimaryGeneratedColumn('increment')
+    public id?: number;
 
-    @Column({type: 'numeric', name: 'id_people'})
-    public idPeople: number;
+    @Column({type: 'numeric', name: 'people_id'})
+    public peopleId: number;
 
     @Column({type: 'double'})
     public balance: Double;
@@ -32,8 +37,8 @@ export default class Account extends BaseEntity {
     @Column({type: 'boolean', name: 'active_flag'})
     public activeFlag: boolean;
 
-    @Column({type: 'varchar', name: 'type_account'})
-    public typeAccount: string;
+    @Column({type: 'enum', enum: TypeAccountRole, name: 'type_account'})
+    public typeAccount: TypeAccountRole;
 
     @Column({type: 'date', name:'date_birthday'})
     public dateBirthday: Date;
@@ -49,9 +54,9 @@ export default class Account extends BaseEntity {
 
     @OneToOne(type => People, people => people.account)
     @JoinColumn({name: 'id'})
-    people: People
+    public people: People
 
     @OneToMany(type => Transaction, transaction => transaction.account)
     @JoinColumn({name: 'id', referencedColumnName: 'id_people'})
-    transaction: Transaction
+    public transaction: Transaction
 }

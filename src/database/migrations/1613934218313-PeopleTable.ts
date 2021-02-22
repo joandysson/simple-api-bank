@@ -11,6 +11,7 @@ export class PeopleTable1613934218313 implements MigrationInterface {
                     type: "int",
                     isPrimary: true,
                     generationStrategy: "increment",
+                    isGenerated: true
                 },
                 {
                     name: "name",
@@ -19,7 +20,7 @@ export class PeopleTable1613934218313 implements MigrationInterface {
                 {
                     name: "cpf",
                     type: "varchar",
-                    length: "18"
+                    length: "11"
                 },
                 {
                     name: "date_birthday",

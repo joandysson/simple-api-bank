@@ -12,6 +12,7 @@ export class AccountsTable1613934236628 implements MigrationInterface {
                     type: "int",
                     isPrimary: true,
                     generationStrategy: "increment",
+                    isGenerated: true
                 },
                 {
                     name: "people_id",
@@ -31,7 +32,8 @@ export class AccountsTable1613934236628 implements MigrationInterface {
                 },
                 {
                     name: "type_account",
-                    type: "varchar",
+                    type: "enum",
+                    enum: ['C', 'P']
                 },
                 {
                     name: "date_birthday",

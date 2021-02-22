@@ -2,8 +2,8 @@ import { Router } from "express";
 import TransactionController from "@controllers/TransactionController";
 
 
-const peopleRouters = Router();
+const transactionRouters = Router();
 
-peopleRouters.post('/create', TransactionController.index);
+transactionRouters.post('/create', TransactionController.index);
 
-export default peopleRouters;
+export default transactionRouters;

@@ -11,6 +11,7 @@ export class TransactionsTable1613934246914 implements MigrationInterface {
                     type: "int",
                     isPrimary: true,
                     generationStrategy: "increment",
+                    isGenerated: true
                 },
                 {
                     name: "account_id",

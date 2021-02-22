@@ -14,7 +14,7 @@ import Account from "./Account";
 export default class People extends BaseEntity {
 
     @PrimaryGeneratedColumn()
-    public id: number;
+    public id?: number;
 
     @Column({type: 'varchar'})
     public name: string;
@@ -22,8 +22,8 @@ export default class People extends BaseEntity {
     @Column({type: 'varchar'})
     public cpf: string;
 
-    @Column({type: 'date'})
-    public date_birthday: Date;
+    @Column({type: 'date', name: 'date_birthday'})
+    public dateBirthday: Date;
 
     @CreateDateColumn({name: 'created_at'})
     public createdAt: Date;
@@ -35,5 +35,5 @@ export default class People extends BaseEntity {
     public deletedAt: Date;
 
     @OneToOne(() => Account, account => account.people)
-    account: Account
+    public account: Account
 }
