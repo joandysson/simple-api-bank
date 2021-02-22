@@ -51,6 +51,24 @@ class AccountController {
         }
     }
 
+    async withdraw(request: Request, response: Response) {
+        const accountExists = await Account.findOne(request.body.accountId)
+
+        if (!accountExists) return response.json('Conta não encontrada').sendStatus(200)
+
+        if(request.body.value > accountExists.balance) return response.json('Saldo insufuciente').sendStatus(200)
+
+        try {
+            await Account.update(accountExists.id, {
+                balance: accountExists.balance - parseFloat(request.body.value)
+            })
+
+            response.sendStatus(200)
+        } catch (error) {
+            response.json(error.message).sendStatus(500)
+        }
+    }
+
 }
 
 export default new AccountController;

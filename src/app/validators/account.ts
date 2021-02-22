@@ -30,3 +30,17 @@ export async function validDeposit(resquest: Request, response: Response, next: 
 
     next();
 }
+
+export const validWithdraw = validDeposit;
+
+export async function validBalance(resquest: Request, response: Response, next: NextFunction) {
+    const schema = Yup.object().shape({
+        accountId: Yup.number().required('ID da conta é obrigatório.'),
+    });
+
+    await schema.validate(resquest.params, {
+        abortEarly: false,
+    });
+
+    next();
+}
