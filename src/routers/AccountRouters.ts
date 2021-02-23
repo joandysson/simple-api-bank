@@ -16,6 +16,5 @@ accountRouters.put('/deposit', validDeposit, AccountController.deposit);
 accountRouters.put('/withdraw', validWithdraw, AccountController.withdraw);
 accountRouters.put('/block', validBlock, AccountController.block);
 accountRouters.get('/balance/:accountId', validBalance, AccountController.balance);
-accountRouters.get('/historytransactions/:accountId', validHistoryTransactions, AccountController.historyTransactions);
 
 export default accountRouters;
