@@ -30,20 +30,18 @@ class AccountController {
 
             await insertAccount.save();
 
-            response.sendStatus(200);
+            response.sendStatus(201);
         } catch (error) {
-            console.log(error.message)
-            response.json({ error: error.message }).sendStatus(500);
+            response.status(500).json({ error: error.message })
         }
     }
     async deposit(request: Request, response: Response) {
         const accountExists = await Account.findOne(request.body.accountId)
 
-        if (!accountExists) return response.json('Conta não encontrada').sendStatus(200)
+        if (!accountExists) return response.status(200).json('Conta não encontrada')
 
 
         try {
-
             await Account.update(accountExists.id, {
                 balance: accountExists.balance + parseFloat(request.body.value)
             })
@@ -57,18 +55,18 @@ class AccountController {
 
             response.sendStatus(200)
         } catch (error) {
-            response.json(error.message).sendStatus(500)
+            response.status(500).json(error.message)
         }
     }
 
     async withdraw(request: Request, response: Response) {
         const accountExists = await Account.findOne(request.body.accountId)
 
-        if (!accountExists) return response.json('Conta não encontrada').sendStatus(200)
+        if (!accountExists) return response.status(200).json('Conta não encontrada')
 
-        if (!accountExists.activeFlag) return response.json('Conta bloquada').sendStatus(200)
+        if (!accountExists.activeFlag) return response.status(200).json('Conta bloquada')
 
-        if (request.body.value > accountExists.balance) return response.json('Saldo insufuciente').sendStatus(200)
+        if (request.body.value > accountExists.balance) return response.status(200).json('Saldo insufuciente')
 
         try {
             await Account.update(accountExists.id, {
@@ -84,41 +82,31 @@ class AccountController {
 
             response.sendStatus(200)
         } catch (error) {
-            response.json(error.message).sendStatus(500)
+            response.status(500).json(error.message)
         }
     }
 
     async balance(request: Request, response: Response) {
         const accountExists = await Account.findOne(request.params.accountId)
 
-        if (!accountExists) return response.json('Conta não encontrada').sendStatus(200)
+        if (!accountExists) return response.status(200).json('Conta não encontrada')
 
-        response.json({ saldo: accountExists.balance }).sendStatus(200)
+        response.status(200).json({ saldo: accountExists.balance })
     }
 
     async block(request: Request, response: Response) {
         const accountExists = await Account.findOne(request.body.accountId)
 
-        if (!accountExists) return response.json('Conta não encontrada').sendStatus(200)
+        if (!accountExists) return response.status(200).json('Conta não encontrada')
         try {
             await Account.update(accountExists.id, {
                 activeFlag: false
             })
 
-            response.json({ saldo: accountExists.balance }).sendStatus(200)
+            response.status(200).json({ saldo: accountExists.balance })
         } catch (error) {
-            response.json(error.message).sendStatus(500)
+            response.status(500).json(error.message)
         }
-
-    }
-
-    async historyTransactions(request: Request, response: Response) {
-        const trasactionsExists = await Transaction.find(request.body.accountId)
-
-        if (!trasactionsExists) return response.json('Conta não encontrada').sendStatus(200)
-
-        response.json({ trasactions: trasactionsExists }).sendStatus(200)
-
     }
 }
 

@@ -1,21 +1,15 @@
+import Transaction from "@models/Transaction";
 import { Request, Response } from "express"
 
 class TransactionController {
-    // async block(request: Request, response: Response) {
-    //     const accountExists = await Account.findOne(request.body.accountId)
+    async historyAll(request: Request, response: Response) {
+        const trasactionsExists = await Transaction.find(request.body.accountId)
 
-    //     if (!accountExists) return response.json('Conta não encontrada').sendStatus(200)
-    //     try {
-    //         await Account.update(accountExists.id, {
-    //             activeFlag: false
-    //         })
+        if (!trasactionsExists) return response.status(200).json('Conta não encontrada')
 
-    //         response.json({ saldo: accountExists.balance }).sendStatus(200)
-    //     } catch (error) {
-    //         response.json(error.message).sendStatus(500)
-    //     }
+        response.status(200).json({ trasactions: trasactionsExists });
 
-    // }
+    }
 }
 
 export default new TransactionController;
