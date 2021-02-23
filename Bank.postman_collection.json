@@ -1,0 +1,196 @@
+{
+	"id": "fa75c48c-3e28-f2d0-6632-c5253054d34a",
+	"name": "Bank",
+	"description": "",
+	"order": [],
+	"folders": [
+		{
+			"name": "Account",
+			"description": "",
+			"collectionId": "fa75c48c-3e28-f2d0-6632-c5253054d34a",
+			"order": [
+				"ed30e8d7-08cd-c508-67fd-3ea525049fa2",
+				"df470102-bc2b-d85e-7bf1-8da761eaf96e",
+				"224eef4e-d38c-68ac-fecc-edc5551d7f0c",
+				"0a614ce5-99b3-8d31-5d79-6e7bdbd2d43c",
+				"fe3cac00-5901-c0e3-a4c9-a0357359162a",
+				"0b630cec-7fd0-4c9b-ccd7-ddb069bb2a58"
+			],
+			"owner": "8542119",
+			"folders_order": [],
+			"id": "987c3421-5b77-1ac1-bad3-05a8aa708cab"
+		}
+	],
+	"folders_order": [
+		"987c3421-5b77-1ac1-bad3-05a8aa708cab"
+	],
+	"timestamp": 1613942748245,
+	"owner": "8542119",
+	"public": false,
+	"requests": [
+		{
+			"id": "0a614ce5-99b3-8d31-5d79-6e7bdbd2d43c",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:3333/api/v1/account/block",
+			"folder": "987c3421-5b77-1ac1-bad3-05a8aa708cab",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "PUT",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1613961221007,
+			"name": "Block",
+			"description": "",
+			"collectionId": "fa75c48c-3e28-f2d0-6632-c5253054d34a",
+			"responses": [],
+			"rawModeData": "{\n\t\"accountId\": 12\n}"
+		},
+		{
+			"id": "0b630cec-7fd0-4c9b-ccd7-ddb069bb2a58",
+			"headers": "",
+			"headerData": [],
+			"url": "http://localhost:3333/api/v1/transaction/history/12",
+			"folder": "987c3421-5b77-1ac1-bad3-05a8aa708cab",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1614039513500,
+			"name": "History Transactions",
+			"description": "",
+			"collectionId": "fa75c48c-3e28-f2d0-6632-c5253054d34a",
+			"responses": []
+		},
+		{
+			"id": "224eef4e-d38c-68ac-fecc-edc5551d7f0c",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:3333/api/v1/account/withdraw",
+			"folder": "987c3421-5b77-1ac1-bad3-05a8aa708cab",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "PUT",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1614047871499,
+			"name": "Withdraw",
+			"description": "",
+			"collectionId": "fa75c48c-3e28-f2d0-6632-c5253054d34a",
+			"responses": [],
+			"rawModeData": "{\n\t\"accountId\": 1,\n\t\"value\": \"232\"\n}"
+		},
+		{
+			"id": "df470102-bc2b-d85e-7bf1-8da761eaf96e",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:3333/api/v1/account/deposit",
+			"folder": "987c3421-5b77-1ac1-bad3-05a8aa708cab",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "PUT",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1613962124407,
+			"name": "Deposit",
+			"description": "",
+			"collectionId": "fa75c48c-3e28-f2d0-6632-c5253054d34a",
+			"responses": [],
+			"rawModeData": "{\n\t\"accountId\": 12,\n\t\"value\": \"50\"\n}"
+		},
+		{
+			"id": "ed30e8d7-08cd-c508-67fd-3ea525049fa2",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:3333/api/v1/account/create",
+			"folder": "987c3421-5b77-1ac1-bad3-05a8aa708cab",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1614041506865,
+			"name": "Create",
+			"description": "",
+			"collectionId": "fa75c48c-3e28-f2d0-6632-c5253054d34a",
+			"responses": [],
+			"rawModeData": "{\n\t\"name\": \"test\",\n\t\"cpf\": \"07495613513\",\n\t\"dateBirthday\": \"2000-02-01\",\n\t\"balance\": 10,\n\t\"typeAccount\": \"P\"\n}"
+		},
+		{
+			"id": "fe3cac00-5901-c0e3-a4c9-a0357359162a",
+			"headers": "",
+			"headerData": [],
+			"url": "http://localhost:3333/api/v1/account/balance/1",
+			"folder": "987c3421-5b77-1ac1-bad3-05a8aa708cab",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1614046515836,
+			"name": "Balance",
+			"description": "",
+			"collectionId": "fa75c48c-3e28-f2d0-6632-c5253054d34a",
+			"responses": []
+		}
+	]
+}
