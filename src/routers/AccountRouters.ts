@@ -1,20 +1,18 @@
 import { Router } from "express";
 import AccountController from "@controllers/AccountController";
 import {
-    validDeposit,
+    validAccountId,
+    validDepositOrWithdraw,
     validStore,
-    validWithdraw,
-    validBalance,
-    validBlock,
-    validHistoryTransactions
 } from "@validators/account";
 
 const accountRouters = Router();
 
 accountRouters.post('/create', validStore, AccountController.store);
-accountRouters.put('/deposit', validDeposit, AccountController.deposit);
-accountRouters.put('/withdraw', validWithdraw, AccountController.withdraw);
-accountRouters.put('/block', validBlock, AccountController.block);
-accountRouters.get('/balance/:accountId', validBalance, AccountController.balance);
+accountRouters.put('/deposit', validDepositOrWithdraw, AccountController.deposit);
+accountRouters.put('/withdraw', validDepositOrWithdraw, AccountController.withdraw);
+accountRouters.put('/block', validAccountId, AccountController.block);
+accountRouters.put('/ative', validAccountId, AccountController.ative);
+accountRouters.get('/balance/:accountId', validAccountId, AccountController.balance);
 
 export default accountRouters;

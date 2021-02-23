@@ -1,4 +1,5 @@
 import Transaction from "@models/Transaction";
+import { renderHistoryAll } from "@views/Transaction";
 import { Request, Response } from "express"
 
 class TransactionController {
@@ -7,7 +8,7 @@ class TransactionController {
 
         if (!trasactionsExists) return response.status(200).json('Conta não encontrada')
 
-        response.status(200).json({ trasactions: trasactionsExists });
+        response.status(200).json(renderHistoryAll(trasactionsExists));
 
     }
 }

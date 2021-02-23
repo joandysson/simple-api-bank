@@ -1,7 +1,7 @@
-import { IAccountStore } from "@interfaces/IAccount";
 import Account from "@models/Account";
 import People from "@models/People";
 import Transaction from "@models/Transaction";
+import { renderStorePeople } from "@views/Account";
 import { Request, Response } from "express";
 import { } from "typeorm";
 
@@ -18,19 +18,18 @@ class AccountController {
                 dateBirthday: request.body.dateBirthday
             })
 
-            new Account()
-            const people = await insertPeople.save();
+            const savePeople = await insertPeople.save();
             const insertAccount = Account.create({
-                peopleId: people.id,
+                peopleId: savePeople.id,
                 balance: request.body.balance,
                 dailySummaryLimit: request.body.typeAccount == 'C' ? 2 : 3,
                 activeFlag: true,
                 typeAccount: request.body.typeAccount,
             })
 
-            await insertAccount.save();
+            const saveAccount = await insertAccount.save();
 
-            response.sendStatus(201);
+            response.status(201).json(renderStorePeople(saveAccount, savePeople));
         } catch (error) {
             response.status(500).json({ error: error.message })
         }
@@ -38,7 +37,7 @@ class AccountController {
     async deposit(request: Request, response: Response) {
         const accountExists = await Account.findOne(request.body.accountId)
 
-        if (!accountExists) return response.status(200).json('Conta não encontrada')
+        if (!accountExists) return response.status(204).json('Conta não encontrada')
 
 
         try {
@@ -53,7 +52,7 @@ class AccountController {
 
             await insertTransaction.save()
 
-            response.sendStatus(200)
+            response.status(200).json({newBalance: accountExists.balance + parseFloat(request.body.value)})
         } catch (error) {
             response.status(500).json(error.message)
         }
@@ -62,15 +61,18 @@ class AccountController {
     async withdraw(request: Request, response: Response) {
         const accountExists = await Account.findOne(request.body.accountId)
 
-        if (!accountExists) return response.status(200).json('Conta não encontrada')
+        if (!accountExists) return response.status(204).json('Conta não encontrada')
 
-        if (!accountExists.activeFlag) return response.status(200).json('Conta bloquada')
+        if (!accountExists.activeFlag) return response.status(401).json('Conta bloquada')
 
-        if (request.body.value > accountExists.balance) return response.status(200).json('Saldo insufuciente')
+        if (accountExists.dailySummaryLimit === 0) return response.status(401).json('Limite de saque atingido')
+
+        if (request.body.value > accountExists.balance) return response.status(401).json('Saldo insufuciente')
 
         try {
             await Account.update(accountExists.id, {
-                balance: accountExists.balance - parseFloat(request.body.value)
+                balance: accountExists.balance - parseFloat(request.body.value),
+                dailySummaryLimit: accountExists.dailySummaryLimit - 1
             })
 
             const insertTransaction = Transaction.create({
@@ -80,7 +82,7 @@ class AccountController {
 
             insertTransaction.save()
 
-            response.sendStatus(200)
+            response.status(200).json({newBalance: accountExists.balance - parseFloat(request.body.value)})
         } catch (error) {
             response.status(500).json(error.message)
         }
@@ -89,21 +91,35 @@ class AccountController {
     async balance(request: Request, response: Response) {
         const accountExists = await Account.findOne(request.params.accountId)
 
-        if (!accountExists) return response.status(200).json('Conta não encontrada')
+        if (!accountExists) return response.status(204).json('Conta não encontrada')
 
-        response.status(200).json({ saldo: accountExists.balance })
+        response.status(200).json({ balance: accountExists.balance })
     }
 
     async block(request: Request, response: Response) {
         const accountExists = await Account.findOne(request.body.accountId)
 
-        if (!accountExists) return response.status(200).json('Conta não encontrada')
+        if (!accountExists) return response.status(204).json('Conta não encontrada')
         try {
             await Account.update(accountExists.id, {
                 activeFlag: false
             })
 
-            response.status(200).json({ saldo: accountExists.balance })
+            response.sendStatus(200)
+        } catch (error) {
+            response.status(500).json(error.message)
+        }
+    }
+    async ative(request: Request, response: Response) {
+        const accountExists = await Account.findOne(request.body.accountId)
+
+        if (!accountExists) return response.status(204).json('Conta não encontrada')
+        try {
+            await Account.update(accountExists.id, {
+                activeFlag: true
+            })
+
+            response.sendStatus(200)
         } catch (error) {
             response.status(500).json(error.message)
         }
