@@ -8,6 +8,19 @@
   - É **necessário** possuir o **[Git](https://git-scm.com/)** instalado e configurado no computador
   - Também, é **preciso** ter um gerenciador de pacotes seja o **[NPM](https://www.npmjs.com/)** ou **[Yarn](https://yarnpkg.com/)**.
 
+ > Rotas
+
+```sh
+POST /api/v1/account/create
+PUT /api/v1/account/deposit
+PUT /api/v1/account/withdraw
+PUT /api/v1/account/block
+PUT /api/v1/account/ative
+GET /api/v1/account/balance/:accountId
+GET /api/v1/transaction/history/:accountId
+```
+
+
 1. Faça um clone do repositório:
 
 ```sh
