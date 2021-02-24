@@ -68,7 +68,8 @@ GET /api/v1/transaction/history/:accountId
 4. Executando no postman:
 
 ```sh
-    inportar "Bank.postman_collection.json" postman realizar as requisções a API
+    importar "Bank.postman_collection.json" postman realizar as requisções a API
+    Documentação Postman "docs/Postman  - Documentation bank.pdf"
 ```
 
 5. Executando testes:
